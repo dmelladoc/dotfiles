@@ -111,7 +111,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: mononoki Nerd Font
+    family: ShureTechMono Nerd Font
     # The `style` can be specified to pick a specific face.
     style: Regular
 
@@ -149,7 +149,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 8.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -174,31 +174,59 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-#Colors (Fluorescent)
+#Colors (Tokyo Night)
 colors:
-  primary:
-    background: '#000000'
-    foreground: '#ffffff'
+    primary:
+      background: '0x1a1b26'
+      foreground: '0xa9b1d6'
 
-  normal:
-    black: '#000000'
-    red: '#ff535a'
-    green: '#5adb3c'
-    yellow: '#ffe818'
-    blue: '#00b0d8'
-    magenta: '#ff10a4'
-    cyan: '#ff9838'
-    white: '#ffffff'
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x787c99'
+
+    # Bright colors
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+
+#Colors (Fluorescent)
+#colors:
+#  primary:
+#    background: '#000000'
+#    foreground: '#ffffff'
+#
+#  normal:
+#    black: '#000000'
+#    red: '#ff535a'
+#    green: '#5adb3c'
+#    yellow: '#ffe818'
+#    blue: '#00b0d8'
+#    magenta: '#ff10a4'
+#    cyan: '#ff9838'
+#    white: '#ffffff'
   
-  bright:
-    black: '#000000'
-    red: '#ff535a'
-    green: '#5adb3c'
-    yellow: '#ffe818'
-    blue: '#00b0d8'
-    magenta: '#ff10a4'
-    cyan: '#ff9838'
-    white: '#ffffff'
+#  bright:
+#    black: '#000000'
+#    red: '#ff535a'
+#    green: '#5adb3c'
+#    yellow: '#ffe818'
+#    blue: '#00b0d8'
+#    magenta: '#ff10a4'
+#    cyan: '#ff9838'
+#    white: '#ffffff'
 
 
 # Colors (Tomorrow Night)

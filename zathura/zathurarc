@@ -1,0 +1,8 @@
+# ajuste de ventana
+set adjust-open "width"
+set pages-per-row 1
+set scroll-page-aware "true"
+#set save_position "true"
+
+# otros
+set window-title-basename "true"
