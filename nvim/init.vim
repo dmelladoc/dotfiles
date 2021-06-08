@@ -21,6 +21,13 @@ set copyindent
 
 
 "
+" display
+"
+set number
+set relativenumber
+set numberwidth=2
+
+"
 " VimPlug
 " 
 call plug#begin('~/.vim/plugged')

@@ -58,6 +58,7 @@ module-margin-right = 2
 
 font-0 = Exo 2:pixelsize=12;1
 font-1 = ShureTechMono Nerd Font:size=12:antialias=true;0
+#font-1 = Iosevka Term:size=12:antialias=true;0
 
 modules-left = bspwm 
 modules-center = xwindow 
@@ -111,6 +112,7 @@ interval = 25
 mount-0 = /
 
 label-mounted = %{F#0a81f5}  %{F-}: %percentage_used%%
+label-mounted-underline = ${colors.yellow}
 label-unmounted = %{F#FF0000}  %{F-}
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -245,33 +247,30 @@ label = %date% %time%
 type = internal/pulseaudio
 
 interval = 1
+use-ui-max = false 
 format-volume = <label-volume><bar-volume>
-format-underline = ${colors.yellow}
-label-volume = "%{u#ffe818}墳 %percentage%%%{-u}"
+#format-underline = ${colors.yellow}
+label-volume = "墳 %percentage%% "
 label-volume-foreground = ${root.foreground}
 
 label-muted = 🔇 mute
 label-muted-foreground = ${colors.foreground-alt}
 
-bar-volume-width = 10
-bar-volume-foreground = ${colors.foreground-alt}
-#bar-volume-foreground-0 = ${colors.green}
-#bar-volume-foreground-1 = ${colors.green}
-#bar-volume-foreground-2 = ${colors.green}
-#bar-volume-foreground-3 = ${colors.green} 
-#bar-volume-foreground-4 = ${colors.green}
-#bar-volume-foreground-5 = ${colors.yellow}
-#bar-volume-foreground-6 = ${colors.yellow}
-#bar-volume-foreground-7 = ${colors.cyan}
-#bar-volume-foreground-8 = ${colors.red}
-#bar-volume-foreground-9 = ${colors.red}
+bar-volume-width = 6
+#bar-volume-foreground = ${colors.foreground-alt}
+bar-volume-foreground-0 = #016FA4
+bar-volume-foreground-1 = #4AA94A
+bar-volume-foreground-2 = #F5D002
+bar-volume-foreground-3 = #D4501A
+bar-volume-foreground-4 = #A11C66
+bar-volume-foreground-5 = #A11C66
 bar-volume-gradient = true
-bar-volume-indicator = 
+bar-volume-indicator = ""
 #bar-volume-indicator-foreground = #fec1c4
 #bar-volume-indicator-font = 2
-bar-volume-fill =  
+bar-volume-fill = ""
 #bar-volume-fill-font = 2
-bar-volume-empty =   
+bar-volume-empty = ""
 #bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.background-alt}
 #bar-volume-empty-background = #410002
@@ -358,6 +357,8 @@ menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = power off
 menu-0-1-exec = menu-open-2
+menu-0-2 = log out
+menu-0-2-exec = menu-open-3
 
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
@@ -365,9 +366,14 @@ menu-1-1 = reboot
 menu-1-1-exec = sudo reboot
 
 menu-2-0 = power off
-menu-2-0-exec = sudo shutdown now
+menu-2-0-exec = shutdown now
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+menu-3-0 = log out
+menu-3-0-exec = logout
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
