@@ -36,6 +36,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'lervag/vimtex'
+
+"VimFugitive (git)
+Plug 'tpope/vim-fugitive'
 
 " Deoplete
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -65,3 +69,28 @@ let g:deoplete#enable_at_startup = 1
 let g:airline_theme = 'tokyonight'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
+" Vimtex
+"  server support
+let g:vimtex_compiler_progname = 'nvr'
+
+
+" keybindings
+" NERDTree
+:let mapleader = "`"
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+"Git
+nnoremap <leader>ga :Git add .<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gp :Gpush<CR>
+
+
+"spelling
+nnoremap <leader>s :setlocal spell! spelllang=es<CR>
+
+"Vimtex
+nnoremap <leader>tw :VimtexCompile<CR>
+nnoremap <leader>tc :VimtexClean<CR>
+nnoremap <leader>tt :VimtexView<CR>
