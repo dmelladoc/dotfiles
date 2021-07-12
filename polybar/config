@@ -142,7 +142,8 @@ ws-icon-1 = III;ﱘ
 ws-icon-2 = IV;
 ws-icon-3 = V;戮
 ws-icon-4 = VI;
-
+ws-icon-5 = VII;
+ws-icon-6 = VIII;
 format = <label-state>
 
 [module/mpd]
@@ -255,7 +256,7 @@ type = internal/pulseaudio
 
 interval = 1
 use-ui-max = false 
-format-volume = <label-volume><bar-volume>
+format-volume = <label-volume> <bar-volume>
 #format-underline = ${colors.yellow}
 label-volume = "墳 %percentage%% "
 label-volume-foreground = ${root.foreground}
@@ -263,23 +264,29 @@ label-volume-foreground = ${root.foreground}
 label-muted = 🔇 mute
 label-muted-foreground = ${colors.foreground-alt}
 
-bar-volume-width = 6
+bar-volume-width = 11
 #bar-volume-foreground = ${colors.foreground-alt}
 bar-volume-foreground-0 = #016FA4
-bar-volume-foreground-1 = #4AA94A
-bar-volume-foreground-2 = #F5D002
-bar-volume-foreground-3 = #D4501A
-bar-volume-foreground-4 = #A11C66
-bar-volume-foreground-5 = #A11C66
+bar-volume-foreground-1 = #268C77
+bar-volume-foreground-2 = #4AA94A
+bar-volume-foreground-3 = #A0BD26
+bar-volume-foreground-4 = #F5D002
+bar-volume-foreground-5 = #E5900E
+bar-volume-foreground-6 = #D4501A
+bar-volume-foreground-7 = #BB3640
+bar-volume-foreground-8 = #A11C66
+bar-volume-foreground-9 = #7B266C
+bar-volume-foreground-10 = #542F71
 bar-volume-gradient = true
-bar-volume-indicator = ""
-#bar-volume-indicator-foreground = #fec1c4
+bar-volume-indicator = "ﰉ "
+bar-volume-indicator-foreground = #A8A9AD 
+#${colors.foreground-alt}
 #bar-volume-indicator-font = 2
-bar-volume-fill = ""
+bar-volume-fill = ""
 #bar-volume-fill-font = 2
-bar-volume-empty = ""
+bar-volume-empty = ""
 #bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.background-alt}
+bar-volume-empty-foreground = ${colors.foreground}
 #bar-volume-empty-background = #410002
 
 [module/alsa]
