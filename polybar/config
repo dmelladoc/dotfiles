@@ -27,11 +27,13 @@ secondary = ${xrdb:color3}
 alert = ${xrdb:color1}
 red = ${xrdb:color1}
 yellow = ${xrdb:color3}
+yellow-alt = ${xrdb:color11}
 cyan = ${xrdb:color6}
 green = ${xrdb:color2}
 blue = ${xrdb:color4}
 magenta = ${xrdb:color5}
 orange = ${xrdb:color7}
+
 [bar/deerbar]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -56,9 +58,10 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Exo 2:pixelsize=12;1
-font-1 = ShureTechMono Nerd Font:size=12:antialias=true;0
-#font-1 = Iosevka Term:size=12:antialias=true;0
+;font-0 = Exo 2:pixelsize=12;1
+font-0 = Odibee Sans:size=12;1
+font-1 = ShureTechMono Nerd Font:size=11:antialias=true;0
+;font-1 = Iosevka Term:size=12:antialias=true;0
 
 modules-left = bspwm 
 modules-center = xwindow 
@@ -110,21 +113,36 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
+mount-1 = /home
 
-label-mounted = %{F#0a81f5}  %{F-}: %percentage_used%%
-label-mounted-underline = ${colors.yellow}
-label-unmounted = %{F#FF0000}  %{F-}
+format-mounted = <label-mounted> <bar-used>	
+label-mounted = "%{F#4AA94A} %total%%{F-}:"
+bar-used-width = 5
+bar-used-fill = "  "
+bar-used-indicator = "  "
+bar-used-empty = "  "
+
+bar-used-foreground-0 = #016FA4
+bar-used-foreground-1 = #4AA94A
+bar-used-foreground-2 = #F5D002
+bar-used-foreground-3 = #D4501A
+bar-used-foreground-4 = #A11C66
+bar-used-indicator-foreground = #A8A9AD 
+;label-mounted = %{F#4AA94A} %total%%{F-} <%percentage_used%%>
+format-mounted-underline = ${colors.yellow}
+label-unmounted = %{F#A11C66} %{F-}
 label-unmounted-foreground = ${colors.foreground-alt}
+format-unmounted-underline = ${colors.yellow-alt}
 
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = [%index%] %icon% 
+label-focused = "[%index%] %icon% " 
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
-label-occupied = %icon% 
+label-occupied = " %icon% " 
 label-occupied-padding = 3
 
 label-urgent =  [%index%] %icon  
@@ -184,7 +202,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "﬙ "
+format-prefix = " ﬙ "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.blue}
 label = %percentage:2%%
@@ -192,7 +210,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.green}
 label = %percentage_used%%
@@ -204,20 +222,20 @@ interval = 3.0
 format-connected-prefix = "直 "
 format-connected = <label-connected>
 format-connected-underline = ${colors.magenta}
-label-connected = %essid% [%signal%%]
+label-connected = "  %essid% 說  %signal%% "
 
-format-disconnected = "睊 "
+format-disconnected = " 睊"
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+;ramp-signal-0 = 
+;ramp-signal-1 = 
+;ramp-signal-2 = 
+;ramp-signal-3 = 
+;ramp-signal-4 = 
+;ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
@@ -245,7 +263,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = " " 
+format-prefix = "  " 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.cyan}
 
@@ -254,14 +272,16 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-interval = 1
+interval = 5
 use-ui-max = false 
 format-volume = <label-volume> <bar-volume>
-#format-underline = ${colors.yellow}
-label-volume = "墳 %percentage%% "
+;format-underline = ${colors.yellow}
+;label-volume-prefix = "墳 "
+label-volume = "  %percentage%% "
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 mute
+;label-muted-prefix = "🔇  "
+label-muted = "ﱝ  mute "
 label-muted-foreground = ${colors.foreground-alt}
 
 bar-volume-width = 11
@@ -278,7 +298,7 @@ bar-volume-foreground-8 = #A11C66
 bar-volume-foreground-9 = #7B266C
 bar-volume-foreground-10 = #542F71
 bar-volume-gradient = true
-bar-volume-indicator = "ﰉ "
+bar-volume-indicator = " ﰉ "
 bar-volume-indicator-foreground = #A8A9AD 
 #${colors.foreground-alt}
 #bar-volume-indicator-font = 2

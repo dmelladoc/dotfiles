@@ -32,10 +32,14 @@ set numberwidth=2
 " 
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+
 Plug 'scrooloose/nerdtree'
-Plug 'ghifarit53/tokyonight-vim'
+
+"Plug 'ghifarit53/tokyonight-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'lervag/vimtex'
 
 "VimFugitive (git)
@@ -55,8 +59,8 @@ call plug#end()
 set termguicolors
 
 let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_transparent_background = 1
-let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent = 1
+let g:tokyonight_italic_comments = 1
 
 colorscheme tokyonight
 
@@ -65,11 +69,14 @@ colorscheme tokyonight
 let g:deoplete#enable_at_startup = 1
 
 " VimAirline
-" let g:airline_theme='wombat'
-let g:airline_theme = 'tokyonight'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme='wombat'
+"let g:airline_theme = 'tokyonight'
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
 
+" Lightline
+set noshowmode "No show last line
+let g:lightline = {'colorscheme': 'tokyonight'}
 " Vimtex
 "  server support
 let g:vimtex_compiler_progname = 'nvr'
@@ -86,6 +93,9 @@ nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gp :Gpush<CR>
 
+"tab completion
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 "spelling
 nnoremap <leader>s :setlocal spell! spelllang=es<CR>
