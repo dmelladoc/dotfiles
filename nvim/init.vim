@@ -28,40 +28,6 @@ set relativenumber
 set numberwidth=2
 
 "
-" Special Functions
-"
-function! WordCount()
-    let currentmode = mode()
-    if !exists("g:lastmode_wc")
-        let g:lastmode_wc = currentmode
-    endif
-    " if we modify file, open a new buffer, be in visual ever, or switch modes
-    " since last run, we recompute.
-    if &modified || !exists("b:wordcount") || currentmode =~? '\c.*v' || currentmode != g:lastmode_wc
-        let g:lastmode_wc = currentmode
-        let l:old_position = getpos('.')
-        let l:old_status = v:statusmsg
-        execute "silent normal g\<c-g>"
-        if v:statusmsg == "--No lines in buffer--"
-            let b:wordcount = 0
-        else
-            let s:split_wc = split(v:statusmsg)
-            if index(s:split_wc, "Selected") < 0
-                let b:wordcount = str2nr(s:split_wc[11])
-            else
-                let b:wordcount = str2nr(s:split_wc[5])
-            endif
-            let v:statusmsg = l:old_status
-        endif
-        call setpos('.', l:old_position)
-        return b:wordcount
-    else
-        return b:wordcount
-    endif
-endfunction
-
-
-"
 " VimPlug
 " 
 call plug#begin('~/.vim/plugged')
@@ -83,6 +49,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 
+"wordcount
 call plug#end()
 
 "
@@ -103,11 +70,6 @@ colorscheme tokyonight
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = '/home/caribu/miniconda3/bin/python3'
 
-" VimAirline
-"let g:airline_theme='wombat'
-"let g:airline_theme = 'tokyonight'
-"let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
 
 " Lightline
 set noshowmode "No show last line
@@ -117,13 +79,15 @@ let g:lightline = {
     \ 'colorscheme': 'tokyonight',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified', 'wordcount' ] ],
+    \             [ 'filename', 'modified', 'readonly' ],
+    \             [ 'gitbranch' ],
+    \             [ 'spell' ] ],
     \   'right': [ [ 'lineinfo' ],
     \              [ 'percent' ],
     \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
     \ },
     \ 'component_function': {
-    \   'wordcount': 'WordCount'
+    \   'gitbranch': 'FugitiveHead'
     \ },
     \ 'separator': { 'left': '', 'right': '' },
     \ 'subseparator': { 'left': '', 'right': '' }
