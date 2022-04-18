@@ -2,16 +2,16 @@
 " Config de Vim
 """
 
-"
+
 " General
-"
+
 set encoding=utf8
 set smartcase
 set hlsearch
 
-"
+
 " text
-"
+
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -20,16 +20,14 @@ set autoindent
 set copyindent
 
 
-"
 " display
-"
+
 set number
 set relativenumber
 set numberwidth=2
 
-"
 " VimPlug
-" 
+ 
 call plug#begin('~/.vim/plugged')
 
 "Plug 'vim-airline/vim-airline'
@@ -69,6 +67,9 @@ colorscheme tokyonight
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = '/home/caribu/miniconda3/bin/python3'
+call deoplete#custom#var('omni', 'input_patterns', {
+      \ 'tex': g:vimtex#re#deoplete
+      \})
 
 
 " Lightline
@@ -103,6 +104,14 @@ let g:vimtex_compiler_progname = 'nvr'
 :let mapleader = "`"
 nnoremap <leader>n :NERDTreeToggle<CR>
 
+"Tabs
+map <leader>tn :tabnew<CR>
+map <leader>to :tabonly<CR>
+map <leader>tc :tabclose<CR>
+map <leader>tm :tabmove
+map <leader>tl :tabnext<CR>
+map <leader>th :tabprev<CR>
+
 "Git
 nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gc :Gcommit<CR>
@@ -117,6 +126,6 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 nnoremap <leader>s :setlocal spell! spelllang=es<CR>
 
 "Vimtex
-nnoremap <leader>tw :VimtexCompile<CR>
-nnoremap <leader>tc :VimtexClean<CR>
-nnoremap <leader>tt :VimtexView<CR>
+nnoremap <leader>xw :VimtexCompile<CR>
+nnoremap <leader>xc :VimtexClean<CR>
+nnoremap <leader>xt :VimtexView<CR>
