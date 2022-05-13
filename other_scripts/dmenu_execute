@@ -1,0 +1,2 @@
+#!/bin/sh
+dmenu_path | dmenu -l 10 -x 980 -y 400 -w 600 -fn "Iosevka-14" -dim 0.6 -sb "#7aa2f7" -p "Execute:" "$@" | ${SHELL:-"/bin/sh"} &
