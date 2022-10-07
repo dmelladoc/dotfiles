@@ -44,6 +44,10 @@ super + shift + {h,j,k,l}
 super + shift + g
 	bspc node -n last.!automatic
 
+# Swap selected with biggest node
+super + shift + s
+    bspc node -s biggest.window.local --follow
+
 # Rotate node clockwise/counter clockwise
 super + shift + {n,m}
 	bspc node @/ -C {forward,backward}
@@ -84,7 +88,11 @@ super + {1-9,0}
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}' --follow
 
-# Window State
+# Move to previous/next window
+super + {_,shift +} Tab
+    bspc desktop -f {next,prev}
+
+# Window State (Tiled, Floating, Fullscreen)
 super + ctrl + {t, s, f}
 	bspc node -t {tiled,floating,fullscreen}
 
@@ -113,11 +121,11 @@ super + f
 
 # Chrome
 super + b
-	chromium
+	brave
 
 # Chrome Incognito
 super + n
-	chromium --incognito
+	brave --incognito
 
 # Spotify
 super + s
