@@ -1,144 +1,228 @@
-## Hotkeys para BSPWM
+#
+# wm independent hotkeys
+#
 
-
-# Show this Help
-super + slash
-	~/cmds/sxhkd_help
-
-# Terminal
+# terminal emulator
 super + Return
-	alacritty
+	alacritty	
 
-# Launcher
+# program launcher
 super + space
-	~/cmds/dmenu_execute
+	rofi -modi drun -show drun -line-padding 4 \
+                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
+                -show-icons -drun-icon-theme "Qogir-dark" -font "Iosevka Aile Regular 10"
 
-# Reload Sxhkd
-super + Escape 
+# show open window
+super + shift + space
+	rofi -modi drun -show window -line-padding 4 \
+                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
+                -show-icons -drun-icon-theme "Qogir-dark" -font "Iosevka Aile Regular 10"
+
+# show ssh sesssions
+super + alt + space
+	rofi -modi drun -show ssh -line-padding 4 \
+                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
+                -show-icons -drun-icon-theme "Qogir-dark" -font "Iosevka Aile Regular 10"
+
+# power-menu 
+super + shift + e
+     ~/.config/rofi/powermenu.sh
+
+# make sxhkd reload its configuration files:
+super + Escape
 	pkill -USR1 -x sxhkd
 
-# Toggle transparency
+# Toggle Picom Transparency
 super + ctrl + p
-	{pkill picom, picom -b}
+    {pkill picom, picom -b}
 
-# Quit/Restart bspwm
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
 super + alt + {q,r}
-	bspc {quit, wm -r}
+	bspc {quit,wm -r}
 
-
-## Hotkeys
-
-# Close window / Kill window
-super + {_,shift +} q
+# close and kill
+super + {_,shift + }q
 	bspc node -{c,k}
 
-# Select Nodes
-super + {h,j,k,l}
-	bspc node -f {west,south,north,east}
+# alternate between the tiled and monocle layout
+super + ctrl + m
+	bspc desktop -l next
 
-# Move node
-super + shift + {h,j,k,l}
-	bspc node -s {west,south,north,east}
+# send the newest marked node to the newest preselected node
+# Replaced by super + shift + g
+#super + y
+#	bspc node newest.marked.local -n newest.!automatic.local
 
-# Move node to preselected
+# Move current node to preselected at any window
+super + g
+    bspc node -n last.!automatic
+
+# swap the current node and the biggest local window
 super + shift + g
-	bspc node -n last.!automatic
+	bspc node -s biggest.window.local --follow
 
-# Swap selected with biggest node
-super + shift + s
-    bspc node -s biggest.window.local --follow
+#Balance/Equalize distribution of nodes
+super + ctrl + {b,e}
+    bspc node @/ {-B,-E}
 
-# Rotate node clockwise/counter clockwise
-super + shift + {n,m}
-	bspc node @/ -C {forward,backward}
+#
+# state/flags
+#
 
-# Rotate tree clockwise/counter clockwise
+# set the window state
+super + ctrl + {t,y,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+#super + ctrl + {m,x,y,z}
+#	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# Rotate nodes clockwise/counter-clockwise
 super + shift + {comma,period}
-	bspc node @/ --rotate {90,-90}
+    bspc node @/ -C {forward,backward}
 
-# Expand node
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# Contract node
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# Move floating node
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+# Rotate tree clockwise/counter-clockwise
+super + ctrl + {comma,period}
+    bspc node @/ --rotate {-90,90}
 
 
-## Node Gaps
+# focus the node for the given path jump
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
 
-# Add Gaps 
-super + ctrl + equal
-	bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 3 ))
+# focus the next/previous window in the current desktop
+#super + {_,shift + }c
+#	bspc node -f {next,prev}.local.!hidden.window
 
-# Reduce Gaps
-super + ctrl + minus
-    bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 3 ))
+# Move to the next/previous desktop in the current monitor
+super + {_,shift +} Tab
+    bspc desktop -f {next, prev}
 
+# focus the last node/desktop
+#super + {grave,Tab}
+#	bspc {node,desktop} -f last
 
-# Select Window
+# focus the older or newer node in the focus history
+#super + {o,i}
+#	bspc wm -h off; \
+#	bspc node {older,newer} -f; \
+#	bspc wm -h on
+
+# focus to the given desktop
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
-# Move node to window
+# send to the given desktop
 super + shift + {1-9,0}
-	bspc node -d '^{1-9,10}' --follow
+    bspc node -d '^{1-9,10}' --follow
 
-# Move to previous/next window
-super + {_,shift +} Tab
-    bspc desktop -f {next,prev}
+#
+# preselect
+#
 
-# Window State (Tiled, Floating, Fullscreen)
-super + ctrl + {t, s, f}
-	bspc node -t {tiled,floating,fullscreen}
-
-# Preselect node space
+# preselect the direction
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-# Balance/Equalize distribution from current node
-super + ctrl + {b,e}
-	bspc node @/ {-B,-E}
-
-# Preselect Ratio
+# preselect the ratio
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# Cancel preselection
+# cancel the preselection for the focused node
 super + ctrl + space
 	bspc node -p cancel
 
+# cancel the preselection for the focused desktop
+#super + ctrl + shift + space
+#	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-## Apps Hotkeys
+#
+# move/resize
+#
 
-# FileManager
-super + f
-	dolphin
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# Chrome
-super + b
-	brave
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# Chrome Incognito
-super + n
-	brave --incognito
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# Spotify
-super + s
-	spotify
+# add gaps
+super + alt + equal
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 5))
 
-# nvim
-super + v 
-	alacritty -e nvim 
+# Reduce gaps
+super + alt + minus
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 5))
 
-# Print screen
+
+#
+# Special hotkeys
+#
+
+# Multimedia keys
+XF86AudioRaiseVolume
+  amixer -q set Master 5%+ unmute
+
+# Still multimedia
+XF86AudioLowerVolume
+  amixer -q set Master 5%- unmute
+
+# still
+XF86AudioMute
+  amixer -D pulse sset Master toggle-mute
+  
+# amixer -q set Master toggle
+# Simple amixer command seems to have problems unmuting device
+
+# Brightness up
+XF86MonBrightnessUp
+  xbacklight -inc 5
+
+# And brightness down
+XF86MonBrightnessDown
+  xbacklight -dec 5
+
+# Screenshot
 Print
-	scrot ~/Imágenes/%Y%m%d_%H%m%s.png
+    scrot ~/Imágenes/%Y%m%d_%H%m%s.png
 
-# Print selection
-shift + Print
-	scrot ~/Imágenes/%Y%m%d_%H%m%s.png -s
+super + Print
+  ~/.config/bspwm/scripts/screenshot.sh
+
+# Shortcuts
+
+super + b 
+    firefox
+
+super + n
+    firefox --private-window
+
+super + f 
+    thunar 
+
+super + s
+    spotify
+
+
+# TODO: Reemplazar este con el documento que armé. Ver como organizarlo
+#super + F1
+#  ~/.config/bspwm/scripts/keybindings_rofi.sh
