@@ -1,0 +1,5 @@
+require("deervim.core.options")
+-- require("deervim.keymaps")
+require("deervim.start")
+require("deervim.config")
+require("deervim.core.keybindings")
