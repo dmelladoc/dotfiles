@@ -1,0 +1,34 @@
+-- navigation
+vim.keymap.set('n', '<c-h>', ':wincmd h<cr>', { desc = " Ventana" })
+vim.keymap.set('n', '<c-j>', ':wincmd j<cr>', { desc = " Ventana" })
+vim.keymap.set('n', '<c-k>', ':wincmd k<cr>', { desc = " Ventana" })
+vim.keymap.set('n', '<c-l>', ':wincmd l<cr>', { desc = " Ventana" }) 
+
+-- archivos
+vim.keymap.set('n', '<leader>nf', "<cmd>enew<cr>", {desc = "Nuevo archivo" }) --nuevo
+
+
+-- Paquetes 
+vim.keymap.set('n', '<leader>lz', "<cmd>Lazy<cr>", {desc = "Abrir Lazy" })
+
+-- Buffers
+vim.keymap.set('n', '<leader>b[', "<cmd>BufferLineCyclePrev<cr>", {desc = " Buffer"}) --prev
+vim.keymap.set('n', '<leader>b]', "<cmd>BufferLineCycleNext<cr>", {desc = " Buffer"}) --next
+
+-- neotree
+
+vim.keymap.set('n', '<leader>fe', '<cmd>Neotree toggle<cr>', {desc = "󱏒  NeoTree"})
+--vim.keymap.set('n', '<leader>fe>', '<cmd>Neotree position=float toggle<cr>')
+
+-- telescope
+local builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc = "Buscar Archivo"}) --find
+vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {desc = "Archivos Previos"})   --old
+vim.keymap.set('n', '<leader>fr', builtin.live_grep, {desc = "Grep"})  --grep
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {desc = "Ayuda"})  --help
+vim.keymap.set('n', '<leader>fb', builtin.buffers , {desc = "Buffers"})   --buffers
+vim.keymap.set('n', '<leader>fg', builtin.git_status, {desc = "Git Status"}) --gitstatus
+vim.keymap.set('n', '<leader>fc', builtin.colorscheme, {desc = "Esquema de Colores"})--colorscheme
+
+vim.keymap.set('n', '<leader>fn', "<cmd>Telescope notify<cr>", {desc = "Notificaciones"}) -- notificaciones

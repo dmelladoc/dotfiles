@@ -25,7 +25,7 @@ local plugins = {
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
+        branch = "v3.x",
         lazy = true,
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -80,6 +80,20 @@ local plugins = {
         'akinsho/bufferline.nvim',
         version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons'
+    },
+    --which-key para encontrar mis keybindings
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+    },
+    {
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        config = true,
     },
 }
 

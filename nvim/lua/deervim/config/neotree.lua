@@ -36,6 +36,5 @@ require("neo-tree").setup({
     },
 })
 
--- definir las teclas para abrir
 
 

@@ -7,7 +7,9 @@ require("tokyonight").setup({
         comments = { italic = true },
         keywords = { italic = false },
         functions = { bold = true },
+        floats = "transparent",
     },
+    sidebars = { "qf", "vista_kind", "terminal", "packer" },
 })
 
 vim.opt.termguicolors = true

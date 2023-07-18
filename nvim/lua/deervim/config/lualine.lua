@@ -1,3 +1,5 @@
+local colors = require("tokyonight.colors")
+
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -37,6 +39,7 @@ require("lualine").setup({
                 colored = true,
                 icon_only = true,
                 padding = 1,
+                icon = {align = 'center' },
             },
             {
                 'filename',
@@ -56,15 +59,27 @@ require("lualine").setup({
             { 'location', padding = 1 },
         },
         lualine_y = {
+            --{
+            --    'buffers',
+            --    show_filename_only = true, --solo nombre
+            --    hide_filename_extension = true, --no extensiones
+            --    show_modified_status = true,
+            --    mode = 4,
+            --    max_length = 10,
+            --    use_mode_colors = false,
+            --    symbols = {
+            --        modified = ' ',
+            --        alternate_file = ' ',
+            --        directory =  '  ',
+            --    },
+            --},
             {
-                'buffers', 
-                mode = 4, 
-                max_length = 10,
-                use_mode_colors = true,
-                symbols = {
-                    modified = ' ',     
-                    alternate_file = ' ',
-                    directory =  '  ',
+                'tabs',
+                max_length = 8,
+                mode = 0,
+                tabs_color = {
+                    active = { fg = colors.red1, bg = colors.bg },
+                    inactive = { fg = colors.blue1, bg = colors.bg_dark },
                 },
             },
         },
@@ -72,7 +87,7 @@ require("lualine").setup({
             {
                 require("lazy.status").updates,
                 cond = require("lazy.status").has_updates,
-                icon = {" ", color = { fg = 'cyan' }, },
+                icon = {" ", color = { fg = colors.cyan }, },
             },
         },
     },
