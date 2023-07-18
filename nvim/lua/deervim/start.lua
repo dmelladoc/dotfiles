@@ -90,10 +90,15 @@ local plugins = {
             vim.o.timeoutlen = 300
         end,
     },
+    -- Terminal
     {
         'akinsho/toggleterm.nvim',
         version = "*",
         config = true,
+    },
+    -- Copilot
+    {
+        'github/copilot.vim',
     },
 }
 

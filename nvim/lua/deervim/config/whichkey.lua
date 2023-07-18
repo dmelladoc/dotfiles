@@ -1,5 +1,10 @@
 require('which-key').setup({
-    spelling = { suggestions = 10 },
+    plugins = {
+        spelling = {
+            enabled = true,
+            suggestions = 10,
+        },
+    },
     key_labels = {
         ["<cmd>"] = ":",
         ["<cr>"] = "󰌑",
@@ -7,16 +12,16 @@ require('which-key').setup({
         ["<tab>"] = "󰌒 ",
     },
     icons = {
-        breadcrumb = "󰄾",
-        separator = "󰬫 ",
-        group = " ",
+        breadcrumb = "󰑃 ",
+        separator = "󰮺",
+        group = "",
     },
     window = {
         border = 'rounded',
         position = 'top',
-        margin = { 1, 2, 1, 2 },
-        padding = { 1, 1, 1, 1 },
-        winblend = 40,
+        margin = { 1, 0, 1, 0 },
+        padding = { 1, 2, 1, 2 },
+        winblend = 30,
     },
     layout = {
         height = { min = 4, max = 10 },

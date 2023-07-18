@@ -22,3 +22,5 @@ cmp.setup({
         { name = 'buffer' },
     }),
 })
+
+-- Copilot

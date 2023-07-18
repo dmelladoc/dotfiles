@@ -4,7 +4,7 @@ local telbuild = require('telescope.builtin')
 vim.keymap.set('n', '<c-h>', ':wincmd h<cr>', { desc = " Ventana" })
 vim.keymap.set('n', '<c-j>', ':wincmd j<cr>', { desc = " Ventana" })
 vim.keymap.set('n', '<c-k>', ':wincmd k<cr>', { desc = " Ventana" })
-vim.keymap.set('n', '<c-l>', ':wincmd l<cr>', { desc = " Ventana" }) 
+vim.keymap.set('n', '<c-l>', ':wincmd l<cr>', { desc = " Ventana" })
 
 
 --LEADER
@@ -17,40 +17,52 @@ wk.register({
         v = { telbuild.buffers, "Ver Buffers" },
         d = { "<cmd>bdelete!", "Cerrar Buffer" },
     },
+    -- completion (copilot)
+    c = {
+        name = " Copilot",
+        e = { "<cmd>Copilot enable<cr>", "Habilitar" },
+        s = { "<cmd>Copilot status<cr>", "Status" },
+        p = { "<cmd>Copilot panel<cr>", "Panel" },
+    },
     -- Files
     f = {
-        name = "Archivos",
-        f = { telbuild.find_files, "Buscar Archivos"},
-        o = { telbuild.oldfiles, "Archivos Viejos"},
-        e = { "<cmd>Neotree position=left toggle<cr>", "󱏒  NeoTree" },
+        name = " Archivos",
+        f = { telbuild.find_files, "󰮗 Buscar"},
+        o = { telbuild.oldfiles, "󰮳 Old"},
+        e = { "<cmd>Neotree position=left toggle<cr>", "󱏒 NeoTree" },
     },
     -- Git
     g = {
-        name = "Git",
+        name = " Git",
         s = {telbuild.git_status, "Status"},
     },
     -- Help
-    h = { telbuild.help_tags, "Ayuda" },
+    h = { telbuild.help_tags, "󰘥 Ayuda" },
     l = {
         m = {"<cmd>Mason<cr>", "Abrir Mason" },
         l = {"<cmd>Lazy<cr>", "Abrir Lazy" },
     },
     -- Nuevo?
     n = {
-        name = "Neo-tree",
-        t = {"<cmd>Neotree position=float toggle<cr>", "󱏒  NeoTree" },
+        name = "󰰔 ",
+        t = {"<cmd>Neotree position=float toggle<cr>", "󱏒 NeoTree" },
     },
     -- Telescope
     t = {
         name = "󰰦 ",
         l = {
-            name = "Telescope",
-            c = { telbuild.colorscheme, "Telescope 󰸌 " },
-            g = { telbuild.live_grep, "Telescope Grep" },
-            n = { "<cmd>Telescope notify<cr>", "Telescope  " },
+            name = " Telescope",
+            c = { telbuild.colorscheme, "󰸌 Colores" },
+            f = { telbuild.find_files, "󰮗 Buscar"},
+            g = { telbuild.live_grep, "Grep" },
+            h = { telbuild.help_tags, "󰘥 Ayuda" },
+            n = { "<cmd>Telescope notify<cr>", " Notificaciones" },
+            o = { telbuild.oldfiles, "󰮳 Old"},
+            s = {telbuild.git_status, " Status"},
+            v = { telbuild.buffers, "Buffers" },
         },
         t = {
-            name = "Terminal",
+            name = "  Terminal",
             b = {"<cmd>lua _BOTTOM_TOGGLE()<cr>", "  btm"},
             h = {"<cmd>ToggleTerm size=10 direction=horizontal<cr>", "  Horizontal"},
             f = {"<cmd>ToggleTerm direction=float<cr>", "  Float"},
@@ -60,14 +72,14 @@ wk.register({
     },
     -- Vim Generals
     v = {
-        name = " ",
+        name = "  Vim",
         f = { "<cmd>enew<cr>", "Nuevo archivo" },
         q = {"<cmd>q!<cr>","Salir 󰗼 "},
         w = { "<cmd>w!<cr>", "Guardar  " },
     },
     -- Window
     w = {
-        name = "Ventanas",
+        name = "  Ventanas",
         h = { ":wincmd h<cr>",  " Ventana" },
         j = { ":wincmd j<cr>",  " Ventana" },
         k = { ":wincmd k<cr>",  " Ventana" },
