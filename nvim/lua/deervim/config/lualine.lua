@@ -1,4 +1,4 @@
-local colors = require("tokyonight.colors")
+local colors = require("tokyonight.colors").setup()
 
 require("lualine").setup({
     options = {
@@ -13,7 +13,8 @@ require("lualine").setup({
         lualine_b = {
             {
                 'branch',
-                icon = { '', color = { fg = 'green' } },
+                icon = { '' },
+                color = { bg = colors.green, fg = colors.bg_dark },
             },
             {
                 'diff',
@@ -31,6 +32,7 @@ require("lualine").setup({
                     info = ' ',
                     hint = ' ',
                 },
+                always_visible = true,
             },
         },
         lualine_c = {
@@ -55,31 +57,47 @@ require("lualine").setup({
             'filesize',
         },
         lualine_x = {
-            { 'progress', padding = 1 },
-            { 'location', padding = 1 },
+            {
+                'progress',
+                padding = {left = 1, right = 1 },
+                color = {
+                    bg = colors.red,
+                    fg = colors.bg_dark,
+                },
+                separator = {left = ' ', right = ' ' },
+            },
+            {
+                'location',
+                padding = { left = 0, right = 1 },
+                color = {
+                    bg = colors.yellow,
+                    fg = colors.bg_dark,
+                },
+            },
         },
         lualine_y = {
-            --{
-            --    'buffers',
-            --    show_filename_only = true, --solo nombre
-            --    hide_filename_extension = true, --no extensiones
-            --    show_modified_status = true,
-            --    mode = 4,
-            --    max_length = 10,
-            --    use_mode_colors = false,
-            --    symbols = {
-            --        modified = ' ',
-            --        alternate_file = ' ',
-            --        directory =  '  ',
-            --    },
-            --},
             {
-                'tabs',
-                max_length = 8,
-                mode = 0,
-                tabs_color = {
-                    active = { fg = colors.red1, bg = colors.bg },
-                    inactive = { fg = colors.blue1, bg = colors.bg_dark },
+                'buffers',
+                show_filename_only = true, --solo nombre
+                hide_filename_extension = true, --no extensiones
+                show_modified_status = true,
+                mode = 2,
+                max_length = 10,
+                use_mode_colors = false,
+                buffers_color = {
+                    active = {
+                        fg = colors.bg_dark,
+                        bg = colors.magenta,
+                    },
+                    inactive = {
+                        fg = colors.magenta,
+                        bg = colors.bg_dark,
+                    },
+                },
+                symbols = {
+                    modified = ' ',
+                    alternate_file = ' ',
+                    directory =  '  ',
                 },
             },
         },
@@ -91,4 +109,5 @@ require("lualine").setup({
             },
         },
     },
+    extensions = {'lazy', 'neo-tree'},
 })

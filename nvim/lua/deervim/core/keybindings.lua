@@ -11,11 +11,11 @@ vim.keymap.set('n', '<c-l>', ':wincmd l<cr>', { desc = " Ventana" })
 wk.register({
     -- Buffers
     b = {
-        name = "Buffers",
+        name = " Buffers",
         ["["] = { "<cmd>BufferLineCyclePrev<cr>", " Buffer"},
         ["]"] = { "<cmd>BufferLineCycleNext<cr>", " Buffer"},
         v = { telbuild.buffers, "Ver Buffers" },
-        d = { "<cmd>bdelete!", "Cerrar Buffer" },
+        d = { "<cmd>bdelete!<cr>", "Cerrar Buffer" },
     },
     -- completion (copilot)
     c = {
@@ -27,8 +27,9 @@ wk.register({
     -- Files
     f = {
         name = " Archivos",
-        f = { telbuild.find_files, "󰮗 Buscar"},
-        o = { telbuild.oldfiles, "󰮳 Old"},
+        n = { "<cmd>enew<cr>", " Nuevo" },
+        d = { telbuild.oldfiles, "󰮳 Old"},
+        o = { telbuild.find_files, "󰮗 Buscar"},
         e = { "<cmd>Neotree position=left toggle<cr>", "󱏒 NeoTree" },
     },
     -- Git
@@ -38,18 +39,23 @@ wk.register({
     },
     -- Help
     h = { telbuild.help_tags, "󰘥 Ayuda" },
+    -- N
+    n = {
+        name = "󰰔 ",
+        f = { "<cmd>enew<cr>", " Nuevo" },
+        -- neotree
+        t = {"<cmd>Neotree position=float toggle<cr>", "󱏒 NeoTree" },
+    },
+    -- Package managers
     l = {
+        name = " Managers",
         m = {"<cmd>Mason<cr>", "Abrir Mason" },
         l = {"<cmd>Lazy<cr>", "Abrir Lazy" },
     },
-    -- Nuevo?
-    n = {
-        name = "󰰔 ",
-        t = {"<cmd>Neotree position=float toggle<cr>", "󱏒 NeoTree" },
-    },
-    -- Telescope
+    -- T
     t = {
         name = "󰰦 ",
+        -- Telescope
         l = {
             name = " Telescope",
             c = { telbuild.colorscheme, "󰸌 Colores" },
@@ -59,10 +65,11 @@ wk.register({
             n = { "<cmd>Telescope notify<cr>", " Notificaciones" },
             o = { telbuild.oldfiles, "󰮳 Old"},
             s = {telbuild.git_status, " Status"},
-            v = { telbuild.buffers, "Buffers" },
+            v = { telbuild.buffers, " Buffers" },
         },
+        -- Terminal
         t = {
-            name = "  Terminal",
+            name = " Terminal",
             b = {"<cmd>lua _BOTTOM_TOGGLE()<cr>", "  btm"},
             h = {"<cmd>ToggleTerm size=10 direction=horizontal<cr>", "  Horizontal"},
             f = {"<cmd>ToggleTerm direction=float<cr>", "  Float"},
@@ -72,24 +79,24 @@ wk.register({
     },
     -- Vim Generals
     v = {
-        name = "  Vim",
-        f = { "<cmd>enew<cr>", "Nuevo archivo" },
-        q = {"<cmd>q!<cr>","Salir 󰗼 "},
-        w = { "<cmd>w!<cr>", "Guardar  " },
+        name = " Vim",
+        q = {"<cmd>q!<cr>","󰗼 Salir"},
+        w = { "<cmd>w!<cr>", " Guardar" },
+        s = { "<cmd>set spell!<cr>", "󰓆 Corrector" },
     },
     -- Window
     w = {
-        name = "  Ventanas",
+        name = " Ventanas",
         h = { ":wincmd h<cr>",  " Ventana" },
         j = { ":wincmd j<cr>",  " Ventana" },
         k = { ":wincmd k<cr>",  " Ventana" },
         l = { ":wincmd l<cr>",  " Ventana" },
-        c = { "<cmd>close<cr>", "Cerrar Ventana" },
-        n = { "<cmd>new<cr>", "Nueva Ventana" },
-        v = { "<cmd>vsplit<cr>", "VSplit" },
-        s = { "<cmd>split<cr>", "Split" },
-        r = { ":wincmd r<cr>", "Rotar cw" },
-        ["R"] = { ":wincmd R<cr>", "Rotar ccw" },
+        c = { "<cmd>close<cr>", "󰖭 Cerrar" },
+        n = { "<cmd>new<cr>", " Nueva" },
+        v = { "<cmd>vsplit<cr>", " Split" },
+        s = { "<cmd>split<cr>", " Split" },
+        r = { ":wincmd r<cr>", " Rotar" },
+        ["R"] = { ":wincmd R<cr>", " Rotar" },
     },
     -- 
 }, { prefix = "<leader>" })

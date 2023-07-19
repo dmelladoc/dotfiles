@@ -23,4 +23,7 @@ cmp.setup({
     }),
 })
 
+-- minipairs
+require("mini.pairs").setup()
+
 -- Copilot

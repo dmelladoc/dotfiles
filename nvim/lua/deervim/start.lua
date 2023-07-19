@@ -97,9 +97,9 @@ local plugins = {
         config = true,
     },
     -- Copilot
-    {
-        'github/copilot.vim',
-    },
+    { 'github/copilot.vim' },
+    -- minipairs
+    { 'echasnovski/mini.pairs', version = '*' },
 }
 
 -- config de lazy
